@@ -1,2 +1,2 @@
 #!/bin/bash
-awk 'NR % 2'
+nl -ba -s: -w1 | grep -E '^[0-9]*[13579]:' | cut -d: -f2-'
