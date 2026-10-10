@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #Displaying the contents of the current directory, in a list format and showing the part only after the dash
 
-for "$file in*" do
+for file in *;do
 	echo "${file#*-}"
 done
