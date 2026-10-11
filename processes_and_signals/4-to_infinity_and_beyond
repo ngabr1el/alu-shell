@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+#Writing a true loop that runs until stopped
+
+while true
+do
+	echo "To infinity and beyond"
+	sleep 2
+done
