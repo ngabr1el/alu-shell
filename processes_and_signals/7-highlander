@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-Displays "To infinity and beyond" indefinitely, and is invincible to SIGTERM
+#Displays "To infinity and beyond" indefinitely, and is invincible to SIGTERM
 
 trap 'echo "I am invincible!!!"' SIGTERM
 
