@@ -1,7 +1,37 @@
 #!/usr/bin/env bash
-#Indefinitely writes "I am alive!" to /tmp/my_process, pausing 2 seconds between messages
-while true
-do
-    echo "I am alive!" >> /tmp/my_process
-    sleep 2
-done
+# Init script that starts, stops and restarts manage_my_process
+
+PID_FILE="/var/run/my_process.pid"
+DIR="$(dirname "$0")"
+
+start() {
+    nohup "$DIR/manage_my_process" > /dev/null 2>&1 &
+    echo "$!" > "$PID_FILE"
+}
+
+stop() {
+    if [ -f "$PID_FILE" ]
+    then
+        kill "$(cat "$PID_FILE")"
+        rm -f "$PID_FILE"
+    fi
+}
+
+case "$1" in
+    start)
+        start
+        echo "manage_my_process started"
+        ;;
+    stop)
+        stop
+        echo "manage_my_process stopped"
+        ;;
+    restart)
+        stop
+        start
+        echo "manage_my_process restarted"
+        ;;
+    *)
+        echo "Usage: manage_my_process {start|stop|restart}"
+        ;;
+esac
